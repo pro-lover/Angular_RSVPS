@@ -1,0 +1,144 @@
+
+
+	<h3>
+		Dietary Details
+	</h3>
+	<p>
+		Please advise if you have additional dietary requirements.
+	</p>
+	<form class="form-afconf" [formGroup]="FormGroupStep">
+
+		<br /><br />
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Dietary requirements</mat-label>
+					<mat-select formControlName="dietId" [ngClass]="{ 'is-invalid':  fStep['dietId'].errors }" required>
+						<mat-option></mat-option>
+						<ng-container *ngFor="let diet of dataDiet$ | async">
+							<mat-option *ngIf="diet.status === true" [value]="diet.id">
+								<span>{{ diet.name }}</span>
+							</mat-option>
+						</ng-container>
+					</mat-select>
+					<mat-error *ngIf="fStep['dietId'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['dietId'].errors['required']">Please specify your dietary requirements.</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill" *ngIf="fStep['dietId'].value === 3">
+					<mat-label>Dietary requirements</mat-label>
+					<input matInput placeholder="Please specify your dietary requirements." formControlName="additionalDiet" [ngClass]="{ 'is-invalid':  fStep['additionalDiet'].errors }" required />
+					<mat-error *ngIf="fStep['additionalDiet'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['additionalDiet'].errors['required']">Please specify your dietary requirements.</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Medical conditions</mat-label>
+					<mat-select formControlName="medicalconditionRequired" [ngClass]="{ 'is-invalid':  fStep['medicalconditionRequired'].errors }" required>
+						<mat-option></mat-option>
+						<mat-option value="No">No</mat-option>
+						<mat-option value="Yes">Yes</mat-option>
+					</mat-select>
+					<mat-error *ngIf="fStep['medicalconditionRequired'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['medicalconditionRequired'].errors['required']">Medical conditions is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill" *ngIf="fStep['medicalconditionRequired'].value === 'Yes'">
+					<mat-label>Medical conditions</mat-label>
+					<input matInput placeholder="Please specify your medical condition." formControlName="medicalcondition" [ngClass]="{ 'is-invalid':  fStep['medicalcondition'].errors }" required />
+					<mat-error *ngIf="fStep['medicalcondition'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['medicalcondition'].errors['required']">Please specify your medical condition.</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="form-row row">
+			<div class="form-group col-12 col-md-12">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Allergies or other health matters that we should be aware of</mat-label>
+					<input matInput placeholder="Please specify your medical condition." formControlName="allergies" [ngClass]="{ 'is-invalid':  fStep['allergies'].errors }" />
+					<!--
+					<mat-error *ngIf="fStep['allergies'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['allergies'].errors['required']"></div>
+					</mat-error>
+					-->
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Flight Details</mat-label>
+					<mat-select formControlName="flightRequired" [ngClass]="{ 'is-invalid':  fStep['flightRequired'].errors }" required>
+						<mat-option></mat-option>
+						<mat-option value="N/A">I am local, no flight details required</mat-option>
+						<mat-option value="No">Register <strong>without</strong> flight details</mat-option>
+						<mat-option value="Yes">Register <strong>with</strong> flight details</mat-option>
+					</mat-select>
+					<mat-error *ngIf="fStep['flightRequired'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['flightRequired'].errors['required']">Please specify whether Flight Details are applicable to you or not.</div>
+					</mat-error>
+					<mat-hint>This is what we will use to arrange your transfer from the airport to the hotel and from the hotel to the airport.</mat-hint>
+				</mat-form-field>
+			</div>
+
+		</div>
+
+		<br />
+		<br />
+		<div style="display:flex;justify-content: space-between;">
+			<button
+				[disabled]="submitting"
+				class="button-black button-left-parallelogram"
+				[routerLink]="['/', 'rsvp', 'next-of-kin']">
+					<span class="skew-fix">
+						Back
+					</span>
+			</button>
+
+			<button
+				*ngIf="fStep['flightRequired'].value === 'N/A' || fStep['flightRequired'].value === 'No'"
+				[disabled]="submitting"
+				(click)="nextStep('complete')"
+				class="button-black button-right-parallelogram">
+					<span class="skew-fix">
+						<span *ngIf="!submitting">Register</span>
+						<span *ngIf="submitting" class="spinner-border spinner-border-sm mr-1"></span>
+					</span>
+			</button>
+
+			<button
+				*ngIf="fStep['flightRequired'].value === 'Yes'"
+				[disabled]="submitting"
+				(click)="nextStep('travel-details')"
+				class="button-black button-right-parallelogram">
+					<span class="skew-fix">
+						<span *ngIf="!submitting">Next</span>
+						<span *ngIf="submitting" class="spinner-border spinner-border-sm mr-1"></span>
+					</span>
+			</button>
+
+		</div>
+
+	</form>
+

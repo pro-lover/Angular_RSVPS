@@ -1,0 +1,93 @@
+@import './../base/variables';
+
+.app-container {
+	min-height: 100vh;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	position: relative;
+
+	@include transition(all, .2s, ease-out);
+}
+
+header {
+	.navbar {
+		.black-logo {
+			display: none !important;
+		}
+	}
+}
+
+
+body[class*='page-rsvp'],
+body[class*='page-rsvp-'] {
+
+	#app-layout-logged-out {
+		padding-top: 10vh;
+		align-items: start;
+		//background: linear-gradient(45deg, rgba(45,45,45,1) 9%,rgba(0,0,0,1) 100%);
+		background: $colour_white;
+	}
+
+	header {
+		.navbar {
+			.white-logo {
+				display: none !important;
+			}
+			.black-logo {
+				max-width: 30px !important;
+				display: block !important;
+			}
+		}
+	}
+
+	footer {
+		color: $colour_black;
+
+		.social-icons {
+			display: flex !important;
+		}
+
+		a {
+
+			&:hover {
+				color: $colour_black !important;
+			}
+		}
+	}
+}
+
+body.loggedIn-true,
+body[class*='page-admin'],
+body[class*='page-admin-'] {
+
+	header {
+		border-bottom: 1px solid #ffc600;
+		box-shadow: 0 3px 11px 0 #e8eafc, 0 3px 3px -2px #b2b2b21a, -1px -14px 7px 20px #9a9a9a;
+
+		.navbar {
+			//padding: 2em 0;
+			background-color: rgb(30 26 26 / 98%);
+		}
+	}
+
+	#app-layout,
+	#app-layout-logged-out {
+		padding-top: 10vh;
+		align-items: start;
+		//background: linear-gradient(45deg, rgba(45,45,45,1) 9%,rgba(0,0,0,1) 100%);
+		background: $colour_white;
+	}
+
+	footer {
+		color: $colour_black;
+		background-color: $colour_white;
+
+		a {
+
+			&:hover {
+				color: $colour_black !important;
+			}
+		}
+	}
+}

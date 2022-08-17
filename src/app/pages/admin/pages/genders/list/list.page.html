@@ -1,0 +1,145 @@
+<mat-toolbar class="bapp-admin-toolbar">
+
+	<span class="toolbar-title">Total Genders: <span *ngIf="!allData" class="spinner-border spinner-border-sm mr-1"></span><span *ngIf="allData">{{allData.length}}</span></span>
+	<span class="example-spacer"></span>
+	<div class="btn-group" *ngIf="allData">
+
+		<a routerLink="create" class="btn " id="hint-action-btn-create">
+			<mat-icon>
+				add_circle_outline
+			</mat-icon>
+		</a>
+
+	</div>
+
+</mat-toolbar>
+
+<mat-accordion class="accordion-headers-align filters-panel" >
+
+	<mat-expansion-panel expanded="true">
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				FILTERS
+			</mat-panel-title>
+			<mat-panel-description></mat-panel-description>
+		</mat-expansion-panel-header>
+		<ng-template matExpansionPanelContent>
+			<div class="filters-container">
+				<div class="row">
+					<div class="col-12 col-md-6"></div>
+					<div class="col-12 col-md-3 offset-md-3 filter-status-toggle">
+						Active only?
+						<mat-slide-toggle
+							color="primary"
+							(change)="onFilterChange('status')"
+							[formControl]="statusFilterValue">
+						</mat-slide-toggle>
+					</div>
+				</div>
+				<br /><br />
+			</div>
+		</ng-template>
+	</mat-expansion-panel>
+</mat-accordion>
+
+<table class="table table-stripedd" matSort (matSortChange)="sortData($event)" *ngIf="dataView$ | async">
+	<thead>
+		<tr>
+			<th mat-sort-header="id" >ID</th>
+			<th mat-sort-header="name" >Name</th>
+			<th mat-sort-header="shortName" >Short Name</th>
+			<th mat-sort-header="status" >Status</th>
+			<th ></th>
+		</tr>
+	</thead>
+	<tbody>
+		<ng-container *ngFor="let model of sortedData;let indexOfelement = index;">
+			<tr>
+
+				<td [ngClass]="{ 'deleted-record': model.deletedAt !== null }">
+					{{model.id}}
+				</td>
+				<td [ngClass]="{ 'deleted-record': model.deletedAt !== null }">
+					{{model.name}}
+				</td>
+				<td [ngClass]="{ 'deleted-record': model.deletedAt !== null }">
+					{{model.shortName}}
+				</td>
+				<td >
+					<mat-slide-toggle
+						color="primary"
+						[disabled]="model.deletedAt !== null"
+						(change)="toggleStatus($event, model.id)"
+						[checked]="model.status">
+					</mat-slide-toggle>
+				</td>
+
+				<td style="white-space: nowrap;text-align: center;">
+
+					<button
+						mat-icon-button
+						[disabled]="model.isDeleting || model.isVC"
+						[matMenuTriggerFor]="menu" aria-label="">
+							<span *ngIf="model.isDeleting || model.isVC" class="spinner-border spinner-border-sm"></span>
+							<mat-icon>more_vert</mat-icon>
+					</button>
+					<mat-menu #menu="matMenu">
+
+						<button
+							[disabled]="model.deletedAt !== null"
+							routerLink="edit/{{model.id}}"
+							mat-menu-item>
+								<mat-icon>edit</mat-icon>
+								<span>Edit</span>
+						</button>
+
+						<button
+							(click)="audit(model.id)"
+							[disabled]="model.deletedAt !== null"
+							mat-menu-item disabled>
+								<!--<mat-icon>history</mat-icon>-->
+								<mat-icon>track_changes</mat-icon>
+								<span>Audit</span>
+						</button>
+						<button
+							(click)="deleteModel(model.id)"
+							[disabled]="model.deletedAt !== null"
+							mat-menu-item>
+								<mat-icon>delete</mat-icon>
+								<span>Delete</span>
+						</button>
+						<button
+							(click)="restoreModel(model.id)"
+							[disabled]="model.deletedAt === null"
+							mat-menu-item>
+								<mat-icon>restore_from_trash</mat-icon>
+								<span>Restore</span>
+						</button>
+					</mat-menu>
+				</td>
+			</tr>
+			<tr class="filler">
+				<td colspan="5" height="10"></td>
+			</tr>
+		</ng-container>
+		<tr *ngIf="!sortedData">
+			<td colspan="5" class="text-center">
+				<span class="spinner-border spinner-border-lg align-center"></span>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="5" style="padding: 0;">
+				<mat-paginator [length]="length"
+					[showFirstLastButtons]=true
+					[pageSize]="pageSize"
+					[pageSizeOptions]="pageSizeOptions"
+					[pageIndex]="currentPage"
+					(page)="handlePage($event)"
+					aria-label="Select page">
+				</mat-paginator>
+			</td>
+		</tr>
+	</tfoot>
+</table>

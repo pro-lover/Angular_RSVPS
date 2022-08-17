@@ -1,0 +1,116 @@
+
+
+	<h3>
+		Next of Kin Details
+	</h3>
+	<form class="form-afconf" [formGroup]="FormGroupStep">
+
+		<br /><br />
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>First Name</mat-label>
+					<input matInput placeholder="" formControlName="firstNameKin" [ngClass]="{ 'is-invalid':  fStep['firstNameKin'].errors }" required />
+					<mat-error *ngIf="fStep['firstNameKin'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['firstNameKin'].errors['required']">First Name is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="" appearance="fill">
+					<mat-label>Last Name</mat-label>
+					<input matInput placeholder="" formControlName="lastNameKin" [ngClass]="{ 'is-invalid':  fStep['lastNameKin'].errors }" required />
+					<mat-error *ngIf=" fStep['lastNameKin'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['lastNameKin'].errors['required']">Last Name is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<!--
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Mobile Number</mat-label>
+					<input matInput placeholder="" formControlName="contactNumberKin" [ngClass]="{ 'is-invalid':  fStep['contactNumberKin'].errors }" required />
+					<mat-error *ngIf="fStep['contactNumberKin'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['contactNumberKin'].errors['required']">Mobile number is required</div>
+					</mat-error>
+					<mat-hint>Use international format. Eg: +27113223100.</mat-hint>
+				</mat-form-field>
+			</div>
+		</div>
+		-->
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6 two-pac-shakur">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Contact Number Dialing Code</mat-label>
+					<mat-select formControlName="phoneDialCodeCountry">
+						<ng-container *ngFor="let country of dataCountries$ | async">
+							<mat-option *ngIf="country.status === true" [value]="country.code">
+								<span style="display: flex;width: 100%;justify-content: space-between;">
+									<span>{{ country.name }}</span>
+									<img
+										style="position: relative;width: 20px; height: auto;"
+										alt="{{ country.name }}"
+										src="http://purecatamphetamine.github.io/country-flag-icons/3x2/{{country.code}}.svg" />
+								</span>
+							</mat-option>
+						</ng-container>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6 two-pac-shakur">
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Contact Number</mat-label>
+					<input matInput placeholder="" formControlName="contactNumberKin" [ngClass]="{ 'is-invalid':  fStep['contactNumberKin'].errors }" required />
+					<mat-error *ngIf="fStep['contactNumberKin'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['contactNumberKin'].errors['required']">Mobile number is required</div>
+						<div *ngIf="fStep['contactNumberKin'].errors['minlength']">Contact number is too short.</div>
+						<div *ngIf="fStep['contactNumberKin'].errors['maxlength']">Contact number is too long.</div>
+						<!--
+						<div *ngIf="fStep['contactNumberKin'].errors['phoneValidator']">Contact number format is invalid. Please ensure you've specified the country code correctly.</div>
+						-->
+					</mat-error>
+					<!--
+					<mat-hint>International format. Eg: +27113223100.</mat-hint>
+					-->
+				</mat-form-field>
+				<br />
+				<br />
+			</div>
+
+		</div>
+
+		<br />
+		<br />
+		<div style="display:flex;justify-content: space-between;">
+			<button
+				[disabled]="submitting"
+				class="button-black button-left-parallelogram"
+				[routerLink]="['/', 'rsvp', 'contact-details']">
+					<span class="skew-fix">
+						Back
+					</span>
+			</button>
+			<button
+				[disabled]="submitting"
+				(click)="nextStep('personal-details')"
+				class="button-black button-right-parallelogram">
+					<span class="skew-fix">
+						<span *ngIf="!submitting">Next</span>
+						<span *ngIf="submitting" class="spinner-border spinner-border-sm mr-1"></span>
+					</span>
+			</button>
+
+		</div>
+
+	</form>
+

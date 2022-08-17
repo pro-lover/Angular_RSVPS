@@ -1,0 +1,187 @@
+<mat-toolbar class="bapp-admin-toolbar">
+
+	<span class="toolbar-title">Total Shirt Sizes: <span *ngIf="!primaryData" class="spinner-border spinner-border-sm mr-1"></span><span *ngIf="primaryData">{{primaryData.length}}</span></span>
+	<span class="example-spacer"></span>
+	<div class="btn-group">
+		<button routerLink="create" class="btn btn-success" id="hint-action-btn-create">
+			Add size
+		</button>
+
+		<button [disabled]="!primaryData" (click)="export()" class="btn btn-secondary" id="hint-action-btn-export">
+			Export
+		</button>
+
+		<button [disabled]="!primaryData" (click)="back()" class="btn btn-dark" id="hint-action-btn-back">
+			Back
+		</button>
+	</div>
+	<!--
+	<button [disabled]="!primaryData" mat-icon-button class="Help" aria-label="Help" (click)="help()">
+		<mat-icon>help</mat-icon>
+	</button>
+	-->
+</mat-toolbar>
+
+<mat-accordion class="accordion-headers-align graph-panel" >
+
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				FILTERS
+			</mat-panel-title>
+			<mat-panel-description>Filter Table</mat-panel-description>
+		</mat-expansion-panel-header>
+		<ng-template matExpansionPanelContent>
+			<div class="filters-container">
+				<div class="row">
+					<div class="col-12 col-md-6">
+						<mat-form-field class="name-filter-chip-list" appearance="fill" *ngIf="masterReference_names">
+							<mat-chip-list  #chipList aria-label="All Names">
+
+								<mat-chip *ngFor="let activeNameFilter of activeNameFilters" [selectable]="selectable"
+									[removable]="removable" (removed)="removeSelectedFiltered(activeNameFilter.name)">
+											{{activeNameFilter.name}}
+									<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+
+								</mat-chip>
+
+								<input matInput placeholder="Search by name..."
+									#chipInput
+									[formControl]="chipCtrl"
+									[matAutocomplete]="auto"
+									[matChipInputFor]="chipList"
+									[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+									[matChipInputAddOnBlur]="addOnBlur"
+									>
+									<!-- (matChipInputTokenEnd)="add($event)" | async-->
+							</mat-chip-list>
+							<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedTextFilter($event, 'name')">
+								<mat-option *ngFor="let so of filteredNames | async" [value]="so.name">
+									{{ so.name }}
+								</mat-option>
+							</mat-autocomplete>
+						</mat-form-field>
+					</div>
+					<div class="col-12 col-md-3 offset-md-3 filter-status-toggle">
+						Show only active?
+						<br />
+						<mat-slide-toggle
+							color="primary"
+							(change)="onFilterChange('status')"
+							[formControl]="statusFilterValue">
+						</mat-slide-toggle>
+					</div>
+				</div>
+
+			</div>
+		</ng-template>
+	</mat-expansion-panel>
+</mat-accordion>
+<br /><br />
+
+<table class="table table-striped" matSort (matSortChange)="sortData($event)">
+	<thead>
+		<tr>
+			<th mat-sort-header="id" >ID</th>
+			<th mat-sort-header="name" >Name</th>
+			<th mat-sort-header="status" >Status</th>
+			<th ></th>
+		</tr>
+	</thead>
+	<tbody>
+		<ng-container *ngIf="dataView$ | async else contentLoading">
+			<tr *ngFor="let model of sortedData;let indexOfelement = index;">
+
+				<td [ngClass]="{ 'deleted-record': model.deletedAt !== null }">
+					{{model.id}}
+				</td>
+				<td [ngClass]="{ 'deleted-record': model.deletedAt !== null }">
+					{{model.name}}
+				</td>
+
+				<td >
+					<mat-slide-toggle
+						color="primary"
+						[disabled]="model.deletedAt !== null"
+						(change)="toggleStatus($event, model.id)"
+						[checked]="model.status">
+					</mat-slide-toggle>
+				</td>
+				<td style="white-space: nowrap;text-align: center;">
+
+					<button
+						mat-icon-button
+						[disabled]="isDeleting === model.id || isAuditing === model.id || isRestoring === model.id"
+						[matMenuTriggerFor]="menu" aria-label="">
+							<span
+								*ngIf="isDeleting === model.id || isAuditing === model.id || isRestoring === model.id"
+								class="spinner-border spinner-border-sm">
+							</span>
+							<mat-icon>
+								more_vert
+							</mat-icon>
+					</button>
+					<mat-menu #menu="matMenu">
+
+						<button
+							[disabled]="model.deletedAt !== null"
+							routerLink="edit/{{model.id}}"
+							mat-menu-item>
+								<mat-icon>edit</mat-icon>
+								<span>Edit</span>
+						</button>
+
+						<button
+							(click)="audit(model.id)"
+							[disabled]="model.deletedAt !== null"
+							mat-menu-item disabled>
+								<!--<mat-icon>history</mat-icon>-->
+								<mat-icon>track_changes</mat-icon>
+								<span>Audit</span>
+						</button>
+						<button
+							(click)="deleteModel(model.id)"
+							[disabled]="model.deletedAt !== null"
+							mat-menu-item>
+								<mat-icon>delete</mat-icon>
+								<span>Delete</span>
+						</button>
+						<button
+							(click)="restoreModel(model.id)"
+							[disabled]="model.deletedAt === null"
+							mat-menu-item>
+								<mat-icon>restore_from_trash</mat-icon>
+								<span>Restore</span>
+						</button>
+					</mat-menu>
+				</td>
+			</tr>
+			<tr *ngIf="!sortedData">
+				<td colspan="4" class="text-center">
+					<span class="spinner-border spinner-border-lg align-center"></span>
+				</td>
+			</tr>
+		</ng-container>
+		<ng-template #contentLoading>
+			<tr style="background-color: #f5f5f5;">
+				<td colspan="4" style="padding-top: 20px;">
+					<ngx-skeleton-loader count="1" appearance="line" animation="progress"></ngx-skeleton-loader>
+				</td>
+			</tr>
+		</ng-template>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="4">
+				<mat-paginator [length]="length"
+					[showFirstLastButtons]=true
+					[pageSize]="pageSize"
+					[pageSizeOptions]="pageSizeOptions"
+					[pageIndex]="currentPage"
+					(page)="handlePage($event)"
+					aria-label="Select page">
+				</mat-paginator>
+			</td>
+		</tr>
+	</tfoot>
+</table>

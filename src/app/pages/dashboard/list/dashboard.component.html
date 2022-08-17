@@ -1,0 +1,76 @@
+
+<div class="dashboard-content">
+	<!--
+	<div class="row">
+		<div class="col-12" style="text-align: center;">
+			<button
+				style="outline:none;border:none;box-shadow:none;background:none;"
+				[routerLink]="['/', 'admin']">
+					<img
+						alt="TBWA Africa Conference 2022"
+						class="form-logo"
+						src="./assets/images/yellow-africa-conference.png"
+						style="display:block;margin: 0 auto;margin-bottom: 2em;" />
+			</button>
+		</div>
+	</div>
+	-->
+	<div class="p-4"></div>
+	<div class="col-12">
+
+		<mat-tab-group mat-align-tabs="center" dynamicHeight>
+			<mat-tab label="DELEGATES">
+				<ng-template matTabContent>
+
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-12">
+								<br /><br />
+								<app-table-delegates></app-table-delegates>
+							</div>
+						</div>
+					</div>
+
+				</ng-template>
+			</mat-tab>
+			<!--
+			<mat-tab label="EMERGENCY CONTACTS">
+
+			</mat-tab>
+			<mat-tab label="TRAVEL DETAILS">
+				<ng-template matTabContent>
+					Travel Details - Loaded:
+				</ng-template>
+			</mat-tab>
+			<mat-tab label="DIET & MEDICAL DETAILS">
+
+			</mat-tab>
+			<mat-tab label="SHIRT & SHOE SIZES">
+
+			</mat-tab>
+			-->
+			<!--
+			<mat-tab label="MESSAGE">
+				<ng-template matTabContent>
+
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-4">
+								<br /><br />
+								<button mat-flat-button color="primary">
+									Send Message
+								</button>
+							</div>
+							<div class="col-8">
+								<br /><br />
+								<quill-editor></quill-editor>
+							</div>
+						</div>
+					</div>
+				</ng-template>
+			</mat-tab>
+			-->
+		</mat-tab-group>
+
+	</div>
+</div>

@@ -1,0 +1,307 @@
+<div class="row admin-cards">
+	<div class="col-12 col-md-4">
+
+		<div class="admin-card card-accounts">
+
+			<button
+				class="admin-menu-trigger"
+				mat-icon-button
+				[matMenuTriggerFor]="menu" aria-label="">
+					<mat-icon>more_vert</mat-icon>
+			</button>
+
+			<div class="card-user-header">
+				<h3 class="card-user-title">
+					Accounts
+				</h3>
+			</div>
+
+
+
+			<div class="card-user-body">
+				<div class="card-user-body-content">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+					<div class="card-user-body-content-item">
+						<button
+							mat-menu-item
+							[routerLink]="['/admin', 'accounts']">
+								<span>Manage</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<mat-menu #menu="matMenu">
+				<button
+					mat-menu-item>
+						<mat-icon>widgets</mat-icon>
+						<span>Options</span>
+				</button>
+			</mat-menu>
+
+		</div>
+
+	</div>
+
+	<div class="col-12 col-md-4">
+
+		<div class="admin-card card-countries">
+
+			<button
+				class="admin-menu-trigger"
+				mat-icon-button
+				[matMenuTriggerFor]="menu" aria-label="">
+					<mat-icon>more_vert</mat-icon>
+			</button>
+
+			<div class="card-user-header">
+				<h3 class="card-user-title">
+					Countries
+				</h3>
+				<mat-chip-list
+					class="example-chip">
+						<mat-chip
+							class="example-box">
+							<span class="card-user-subtitle">Lookup Field</span>
+						</mat-chip>
+				</mat-chip-list>
+			</div>
+
+			<div class="card-user-body">
+				<div class="card-user-body-content">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+					<div class="card-user-body-content-item">
+						<button
+							mat-menu-item
+							[routerLink]="['/admin', 'countries']">
+								<span>Manage</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<mat-menu #menu="matMenu">
+				<button
+					mat-menu-item>
+						<mat-icon>widgets</mat-icon>
+						<span>Options</span>
+				</button>
+			</mat-menu>
+
+		</div>
+
+	</div>
+	<div class="col-12 col-md-4">
+
+		<div class="admin-card card-offices">
+
+			<button
+				class="admin-menu-trigger"
+				mat-icon-button
+				[matMenuTriggerFor]="menu" aria-label="">
+					<mat-icon>more_vert</mat-icon>
+			</button>
+
+			<div class="card-user-header">
+				<h3 class="card-user-title">
+					Offices
+				</h3>
+				<mat-chip-list
+					class="example-chip">
+						<mat-chip
+							class="example-box">
+							<span class="card-user-subtitle">Lookup Field</span>
+						</mat-chip>
+				</mat-chip-list>
+			</div>
+
+			<div class="card-user-body">
+				<div class="card-user-body-content">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+					<div class="card-user-body-content-item">
+						<button
+							mat-menu-item
+							[routerLink]="['/admin', 'offices']">
+								<span>Manage</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<mat-menu #menu="matMenu">
+				<button
+					mat-menu-item>
+						<mat-icon>widgets</mat-icon>
+						<span>Options</span>
+				</button>
+			</mat-menu>
+
+		</div>
+
+	</div>
+	<div class="col-12 col-md-4">
+
+		<div class="admin-card card-shirt-sizes">
+
+			<button
+				class="admin-menu-trigger"
+				mat-icon-button
+				[matMenuTriggerFor]="menu" aria-label="">
+					<mat-icon>more_vert</mat-icon>
+			</button>
+
+			<div class="card-user-header">
+				<h3 class="card-user-title">
+					Shirt Sizes
+				</h3>
+				<mat-chip-list
+					class="example-chip">
+						<mat-chip
+							class="example-box">
+							<span class="card-user-subtitle">Lookup Field</span>
+						</mat-chip>
+				</mat-chip-list>
+			</div>
+
+
+			<div class="card-user-body">
+				<div class="card-user-body-content">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+					<div class="card-user-body-content-item">
+						<button
+							mat-menu-item
+							[routerLink]="['/admin', 'shirt-sizes']">
+								<span>Manage</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<mat-menu #menu="matMenu">
+				<button
+					mat-menu-item>
+						<mat-icon>widgets</mat-icon>
+						<span>Options</span>
+				</button>
+			</mat-menu>
+
+		</div>
+	</div>
+
+	<div class="col-12 col-md-4">
+
+		<div class="admin-card card-shoe-sizes">
+
+			<button
+				class="admin-menu-trigger"
+				mat-icon-button
+				[matMenuTriggerFor]="menu" aria-label="">
+					<mat-icon>more_vert</mat-icon>
+			</button>
+
+			<div class="card-user-header">
+				<h3 class="card-user-title">
+					Shoe Sizes
+				</h3>
+
+				<mat-chip-list
+					class="example-chip">
+						<mat-chip
+							class="example-box">
+							<span class="card-user-subtitle">Lookup Field</span>
+						</mat-chip>
+				</mat-chip-list>
+			</div>
+
+			<div class="card-user-body">
+				<div class="card-user-body-content">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+					<div class="card-user-body-content-item">
+						<button
+							mat-menu-item
+							[routerLink]="['/admin', 'shoe-sizes']">
+								<span>Manage</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<mat-menu #menu="matMenu">
+				<button
+					mat-menu-item>
+						<mat-icon>widgets</mat-icon>
+						<span>Options</span>
+				</button>
+			</mat-menu>
+
+		</div>
+
+	</div>
+
+	<div class="col-12 col-md-4">
+
+		<div class="admin-card card-diet-options">
+
+			<button
+				class="admin-menu-trigger"
+				mat-icon-button
+				[matMenuTriggerFor]="menu" aria-label="">
+					<mat-icon>more_vert</mat-icon>
+			</button>
+
+			<div class="card-user-header">
+				<h3 class="card-user-title">
+					Diet Options
+				</h3>
+
+				<mat-chip-list
+					class="example-chip">
+						<mat-chip
+							class="example-box">
+							<span class="card-user-subtitle">Lookup Field</span>
+						</mat-chip>
+				</mat-chip-list>
+			</div>
+
+			<div class="card-user-body">
+				<div class="card-user-body-content">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+					<div class="card-user-body-content-item">
+						<button
+							mat-menu-item
+							[routerLink]="['/admin', 'diet-options']">
+								<span>Manage</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<mat-menu #menu="matMenu">
+				<button
+					mat-menu-item>
+						<mat-icon>widgets</mat-icon>
+						<span>Options</span>
+				</button>
+			</mat-menu>
+
+		</div>
+
+	</div>
+
+
+</div>
+
+
+

@@ -1,0 +1,87 @@
+@import './../base/variables';
+
+.form-model-edit {
+	label {
+		margin: 1em auto;
+	}
+
+	input {
+		&:focus {
+			outline: none;
+			box-shadow: none;
+		}
+	}
+
+	.form-group {
+		margin-bottom: 1em;
+	}
+
+	h3 {
+		text-transform: uppercase;
+	}
+
+	.mat-form-field {
+		width: 100%;
+	}
+
+	@media screen and (max-width: get-media(s)) {
+		.btn {
+			font-size: 1em;
+			padding: 1em 2em;
+		}
+	}
+
+	.mat-flat-button,
+	.mat-stroked-button {
+		border-radius: 0;
+	}
+
+	//
+
+
+}
+
+.form-afconf {
+	.mat-form-field {
+		width: 100%;
+
+		.mat-form-field-label .mat-form-field-required-marker {
+			//color: $colour_white;
+			top: 0;
+			position: absolute;
+		}
+
+		.mat-form-field-flex {
+			padding: 0;
+			background: transparent;
+		}
+
+		.mat-form-field-subscript-wrapper {
+			padding: 0;
+		}
+	}
+
+	.mat-form-field-should-float {
+		.mat-form-field-label {
+			//transform: translateY(-0.59375em) scale(0.25) !important;
+		}
+	}
+
+	.mat-form-field .mat-form-field-ripple,
+	.mat-form-field-invalid .mat-form-field-ripple {
+		background-color: $colour_black;
+	}
+
+	.mat-form-field-appearance-fill .mat-form-field-underline::before {
+		background-color: $colour_black;
+		//background-color: transparent;
+	}
+
+	button[disabled] {
+		cursor: not-allowed;
+		opacity: .8;
+		color: #FFFFFF;
+		pointer-events: none;
+	}
+}
+

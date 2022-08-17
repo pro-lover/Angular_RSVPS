@@ -1,0 +1,135 @@
+
+
+	<h3>
+		Contact Details
+	</h3>
+	<form class="form-afconf" [formGroup]="FormGroupStep">
+
+		<br /><br />
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="" appearance="fill">
+					<mat-label>TBWA Office</mat-label>
+					<mat-select formControlName="officeId" [ngClass]="{ 'is-invalid':  fStep['officeId'].errors }" required>
+						<mat-option></mat-option>
+						<ng-container *ngFor="let office of dataOffices$ | async">
+							<mat-option *ngIf="office.status === true" [value]="office.id">
+								<span>{{ office.name }}</span>
+							</mat-option>
+						</ng-container>
+					</mat-select>
+					<mat-error *ngIf="fStep['officeId'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['officeId'].errors['required']">Office is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="" appearance="fill" *ngIf="fStep['officeId'].value === 48">
+					<mat-label>Please let us know the TBWA Office</mat-label>
+					<input matInput placeholder="" formControlName="otherOffice" [ngClass]="{ 'is-invalid':  fStep['otherOffice'].errors }" />
+					<mat-error *ngIf="fStep['otherOffice'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['otherOffice'].errors['required']">Office is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Email address</mat-label>
+					<input matInput placeholder="" formControlName="email" [ngClass]="{ 'is-invalid':  fStep['email'].errors }" required />
+					<mat-error *ngIf="fStep['email'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['email'].errors['required']">Email is required</div>
+						<div *ngIf="fStep['email'].errors['email']">Email must be a valid email address</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="" appearance="fill">
+					<mat-label>Confirm your email address</mat-label>
+					<input matInput placeholder="" formControlName="emailConfirm" [ngClass]="{ 'is-invalid':  fStep['emailConfirm'].errors }" required />
+					<mat-error *ngIf=" fStep['emailConfirm'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['emailConfirm'].errors['required']">Email Confirmation is required</div>
+						<div *ngIf="fStep['emailConfirm'].errors['email']">Email must be a valid email address</div>
+						<div *ngIf="fStep['emailConfirm'].errors['mustMatch']">Emails must match</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6 two-pac-shakur">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Contact Number Dialing Code</mat-label>
+					<mat-select formControlName="phoneDialCodeCountry">
+						<ng-container *ngFor="let country of dataCountries$ | async">
+							<mat-option *ngIf="country.status === true" [value]="country.code">
+								<span style="display: flex;width: 100%;justify-content: space-between;">
+									<span>{{ country.name }}</span>
+									<img
+										style="position: relative;width: 20px; height: auto;"
+										alt="{{ country.name }}"
+										src="http://purecatamphetamine.github.io/country-flag-icons/3x2/{{country.code}}.svg" />
+								</span>
+							</mat-option>
+						</ng-container>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6 two-pac-shakur">
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Contact Number</mat-label>
+					<input matInput placeholder="" formControlName="mobileno" [ngClass]="{ 'is-invalid':  fStep['mobileno'].errors }" required />
+					<mat-error *ngIf="fStep['mobileno'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['mobileno'].errors['required']">Contact number is required.</div>
+						<div *ngIf="fStep['mobileno'].errors['minlength']">Contact number is too short.</div>
+						<div *ngIf="fStep['mobileno'].errors['maxlength']">Contact number is too long.</div>
+						<!--
+						<div *ngIf="fStep['mobileno'].errors['phoneValidator']">Contact number format is invalid. Please ensure you've specified the country code correctly.</div>
+						-->
+					</mat-error>
+					<!--
+					<mat-hint>International format. Eg: +27113223100.</mat-hint>
+					-->
+				</mat-form-field>
+				<br />
+				<br />
+			</div>
+
+		</div>
+
+
+		<br />
+		<br />
+		<div style="display:flex;justify-content: space-between;">
+			<button
+				[disabled]="submitting"
+				class="button-black button-left-parallelogram"
+				[routerLink]="['/', 'rsvp', 'profile']">
+					<span class="skew-fix">
+						Back
+					</span>
+			</button>
+			<button
+				[disabled]="submitting"
+				(click)="nextStep('next-of-kin')"
+				class="button-black button-right-parallelogram">
+					<span class="skew-fix">
+						<span *ngIf="!submitting">Next</span>
+						<span *ngIf="submitting" class="spinner-border spinner-border-sm mr-1"></span>
+					</span>
+			</button>
+
+		</div>
+
+	</form>
+

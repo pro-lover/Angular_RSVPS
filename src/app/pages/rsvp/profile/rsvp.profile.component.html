@@ -1,0 +1,145 @@
+
+
+	<h3>
+		Profile Details
+	</h3>
+	<form class="form-afconf" [formGroup]="FormGroupStep">
+
+		<br /><br />
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>First Name</mat-label>
+					<input matInput placeholder="" formControlName="firstName" [ngClass]="{ 'is-invalid':  fStep['firstName'].errors }" required />
+					<mat-error *ngIf="fStep['firstName'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['firstName'].errors['required']">First Name is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="" appearance="fill">
+					<mat-label>Last Name</mat-label>
+					<input matInput placeholder="" formControlName="lastName" [ngClass]="{ 'is-invalid':  fStep['lastName'].errors }" required />
+					<mat-error *ngIf=" fStep['lastName'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['lastName'].errors['required']">Last Name is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="form-row row">
+			<div class="form-group col-12 col-md-6">
+				<mat-form-field class="" appearance="fill">
+					<mat-label>Passport Number</mat-label>
+					<input matInput placeholder="" formControlName="passportNumber" [ngClass]="{ 'is-invalid':  fStep['passportNumber'].errors }" required />
+					<mat-error *ngIf=" fStep['passportNumber'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['passportNumber'].errors['required']">Passport Number is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Job Title</mat-label>
+					<input matInput placeholder="" formControlName="designation" [ngClass]="{ 'is-invalid':  fStep['designation'].errors }" required />
+					<mat-error *ngIf="fStep['designation'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['designation'].errors['required']">Job title is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="" appearance="fill">
+					<mat-label>Country</mat-label>
+					<mat-select formControlName="countryId" [ngClass]="{ 'is-invalid':  fStep['countryId'].errors }" required>
+						<ng-container *ngFor="let country of dataCountries$ | async">
+							<mat-option *ngIf="country.status === true" [value]="country.id">
+								<span style="display: flex;width: 100%;justify-content: space-between;">
+									<span>{{ country.name }}</span>
+									<img
+										style="position: relative;width: 20px; height: auto;"
+										alt="{{ country.name }}"
+										src="http://purecatamphetamine.github.io/country-flag-icons/3x2/{{country.code}}.svg" />
+								</span>
+							</mat-option>
+						</ng-container>
+					</mat-select>
+					<mat-error *ngIf=" fStep['countryId'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['countryId'].errors['required']">Country is required</div>
+					</mat-error>
+					<mat-hint>Nationality as per passport</mat-hint>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="form-row row">
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="" appearance="fill">
+					<mat-label>T-Shirt size</mat-label>
+					<mat-select formControlName="shirtsizeId" [ngClass]="{ 'is-invalid':  fStep['shirtsizeId'].errors }" required>
+						<ng-container *ngFor="let tshirtSize of dataShirtSizes$ | async">
+							<mat-option [value]="tshirtSize.id" *ngIf="tshirtSize.status === true">
+								<span>{{ tshirtSize.name }}</span>
+							</mat-option>
+						</ng-container>
+					</mat-select>
+					<mat-error *ngIf=" fStep['shirtsizeId'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['shirtsizeId'].errors['required']">T-Shirt size is required</div>
+					</mat-error>
+					<mat-hint>T-Shirts are only available in Male cuts and sizes</mat-hint>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-6">
+
+				<mat-form-field class="" appearance="fill">
+
+					<mat-label>Shoe Size</mat-label>
+					<input matInput placeholder="3 Female" formControlName="shoesize" [ngClass]="{ 'is-invalid':  fStep['shoesize'].errors }" required />
+					<!--
+					<mat-select formControlName="shoesize" [ngClass]="{ 'is-invalid':  fStep['shoesize'].errors }" required>
+						<mat-option></mat-option>
+						<mat-option *ngFor="let shoeSize of dataShoeSizes$ | async" [value]="shoeSize.id">
+							<span>{{ shoeSize.name }}</span>
+						</mat-option>
+					</mat-select>
+					-->
+					<mat-error *ngIf=" fStep['shoesize'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['shoesize'].errors['required']">Please specify your shoe size in UK sizes. Eg. 3 Female or 7 Male</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<br />
+		<br />
+		<div style="display:flex;justify-content: space-between;">
+			<button
+				[disabled]="submitting"
+				class="button-black button-left-parallelogram"
+				[routerLink]="['/']">
+					<span class="skew-fix">
+						Reset
+					</span>
+			</button>
+			<button
+				[disabled]="submitting"
+				(click)="nextStep('contact-details')"
+				class="button-black button-right-parallelogram">
+					<span class="skew-fix">
+						<span *ngIf="!submitting">Next</span>
+						<span *ngIf="submitting" class="spinner-border spinner-border-sm mr-1"></span>
+					</span>
+			</button>
+
+		</div>
+
+	</form>
+

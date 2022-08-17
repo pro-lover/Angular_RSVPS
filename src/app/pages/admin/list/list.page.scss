@@ -1,0 +1,166 @@
+@import  '../../../../theme/app.global.scss';
+
+.admin-cards {
+	margin: 0;
+	padding: 2em;
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 4em;
+
+	@include transition(all, .2s, ease-out);
+
+	.admin-card {
+		border: 1px solid #CCC;
+		position: relative;
+		margin: 1em auto;
+		background-color: #FFFFFF;
+		padding: 2em;
+		border-radius: 10px;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		height: 250px;
+		align-items: stretch;
+		justify-content: space-around;
+		box-shadow: $card_box_shadow;
+		overflow: hidden;
+
+		background-size: contain;
+		background-position: right bottom;
+		background-repeat: no-repeat;
+
+		@include transition(all, .2s, ease-out);
+
+		.example-chip {
+			display: flex;
+			justify-content: center;
+			margin: 1em auto;
+			margin-bottom: 0;
+		}
+
+		.card-user-header {
+			position: relative;
+			text-align: center;
+
+			.card-user-title {
+				font-size: 1em;
+				text-align: center;
+				font-weight: bold;
+				text-transform: uppercase;
+				margin: 2em auto;
+				margin-bottom: .5em;
+			}
+
+			.card-user-subtitle {
+				font-size: .8em;
+				text-align: center;
+				text-transform: uppercase;
+			}
+		}
+
+		.admin-menu-trigger {
+			position: absolute;
+			top:0;
+			right:0;
+		}
+
+		.card-user-avatar {
+			position: relative;
+			display: block;
+			display: none;
+			text-align: center;
+			margin-bottom: 2em;
+
+			img {
+				width: 100%;
+				max-width: 100px;
+				border-radius: 100%;
+				margin: 0 auto;
+				box-shadow: 0 0 0 5px #cbcbcb;
+			}
+
+		}
+
+		.card-user-body {
+			position: relative;
+
+			.card-user-body-content {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				margin: 1em auto;
+
+				.card-user-subtitle {
+					font-size: .8em;
+					text-align: center;
+				}
+
+				p {
+					display: block;
+					display: none;
+					text-align: center;
+					margin-bottom: 2em;
+				}
+
+				.card-user-body-content-item {
+					position: relative;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					text-align: center;
+
+					button {
+						text-align: center;
+						font-weight: bold;
+						border-radius: $border_radius_button;
+						border: 1px solid #cbcbcb;
+						background-color: $colour_white;
+
+						@include transition(all, .2s, ease-out);
+
+						&:hover {
+							color: $colour_white;
+							border: 1px solid $colour_green;
+							background-color: $colour_green;
+						}
+					}
+				}
+			}
+
+		}
+
+		.mat-grid-tile-content {
+			width: 100%;
+		}
+
+		.mat-card-actions {
+			//padding-bottom: 2em;
+			display: flex;
+			flex-direction: row;
+			justify-content:center;
+		}
+
+		//
+		&:before {
+			content: '';
+			position: absolute;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			background-color: rgba(255,255,255,.9);
+		}
+
+		background-image: url('/assets/images/vectors/payments.png');
+
+		&.card-payments {
+			background-image: url('/assets/images/vectors/payments.png');
+			background-size: contain;
+			background-position: right bottom;
+			background-repeat: no-repeat;
+		}
+
+	}
+}

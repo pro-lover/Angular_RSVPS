@@ -1,0 +1,208 @@
+
+@import '../../../../theme/app.global.scss';
+
+@keyframes stretchIn {
+	0% {
+		width: 0;
+		max-height:10px;
+	}
+	75% {
+		width:100%;
+		max-height:10px;
+	}
+	100% {
+		width:100%;
+		max-height:0;
+	}
+}
+
+@keyframes slideIn {
+	0% {
+		transform: scale(200) skew(20deg);
+	}
+	100% {
+		transform: scale(1) skew(20deg);
+	}
+}
+
+.welcome-hero-content {
+	position: relative;
+	top: 0;
+	left: 0;
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 20px;
+
+	&::after,
+	&::before {
+		display: none;
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: -1;
+	}
+
+	.el {
+		opacity: 1;
+	}
+
+	.home-banner-copy {
+		font-weight: bold;
+		.year {
+			color: $colour_yellow;
+		}
+	}
+
+	.section-subtitle {
+		margin-top: 25px;
+		margin-bottom: 20px;
+		font-size: 1.5em;
+		//line-height: 1.1em;
+	}
+
+	.section-description {
+		position: relative;
+		font-size: 14px;
+		max-width: 50%;
+		padding:0;
+		margin: 0 auto;
+		display:block;
+		width:100%;
+	}
+
+	.button-white {
+		text-transform: uppercase;
+		font-size: 14px;
+		line-height: 1;
+		padding: 1em 2em;
+		margin: .5em auto;
+		display: inline-block;
+		background: transparent;
+
+		@include transition(all, .2s, ease-out);
+
+		&:hover {
+
+			color: #000;
+
+			&::before {
+				border-color: $colour_yellow;
+				background-color: $colour_yellow;
+			}
+		}
+	}
+}
+
+#disruptor,
+#MobileSlash {
+	display: none;
+}
+
+/** /
+#disruptor{
+	opacity: 1;
+	transform: translateY(-100px);
+	transition: all 0.5s ease-out;
+}
+
+#DISRUPT #DSRUPT,
+#DISRUPT #SLASH {
+  opacity: 1;
+
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.page-welcome .welcome-hero-content #DISRUPT #DSRUPT{
+	transform: translateX(50px);
+}
+
+#swae .ghost-btn{
+
+	transition: all 0.5s ease-out;
+}
+
+
+
+.tbwa-logo-dark,
+.tbwa-logo-light {
+	position: relative;
+	display: block;
+	width:100%;
+	max-width: 50vw;
+	margin: 0 auto;
+	margin-left: 0;
+}
+
+.tbwa-logo-dark #DISRUPT #DSRUPT,
+.tbwa-logo-dark #DISRUPT #SLASH {
+	fill:#000;
+
+}
+
+.tbwa-logo-light #DISRUPT #DSRUPT{
+	fill:#fff;
+
+}
+
+
+.tbwa-logo-dark #DISRUPT #SLASH {
+	fill: #FFC60A;
+	opacity: 1;
+	transform: translateX(-240px)
+}
+.tbwa-logo-light #DISRUPT #SLASH {
+	fill:#000;
+	opacity: 1;
+	transform: translateX(-240px)
+}
+
+.tbwa-logo-dark #disruptor .st2{
+	fill:#000;
+}
+.tbwa-logo-light #disruptor .st2{
+	fill:#fff;
+}
+
+.tbwa-logo-light #disruptor .st3{
+	fill:#000;
+}
+
+#MobileSlash {
+	display: none;
+	left: 0;
+	top: 0;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+}
+
+
+#disruptor {
+	display: none;
+}
+/**/
+
+/** /
+#swae {
+	display: block;
+	z-index: 2;
+	position: relative;
+}
+
+#swae {
+	position: absolute;
+	top:50%;
+	left:50%;
+	display:block;
+	transform: translateY(-90%) translateX(-50%);
+	z-index: 1;
+}
+/**/

@@ -1,0 +1,27 @@
+
+<section class="container">
+	<main class="row">
+		<div class="col-12">
+
+			<ng-container *ngIf="isLoggedIn$ | async; else landingContent">
+
+				<div class="row dashboard-grid">
+					<!--
+					<app-dashboard-component></app-dashboard-component>
+					-->
+				</div>
+
+			</ng-container>
+
+			<ng-template #landingContent>
+
+				<div class="hero-copy">
+					<app-welcome-banner></app-welcome-banner>
+				</div>
+
+			</ng-template>
+
+		</div>
+
+	</main>
+</section>

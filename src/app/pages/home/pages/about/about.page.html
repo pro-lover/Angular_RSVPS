@@ -1,0 +1,246 @@
+
+<mat-toolbar class="bapp-admin-toolbar">
+
+	<span class="toolbar-title">
+		Walkthroughs and Tutorials
+	</span>
+	<span class="example-spacer"></span>
+	<div class="btn-group">
+		<button (click)="back()" class="btn btn-dark" id="hint-action-btn-back">
+			Back
+		</button>
+	</div>
+
+</mat-toolbar>
+<section class="container-fluid">
+	<main class="row">
+		<div class="col-12">
+
+			<div class="hero-section"  *ngIf="isLoggedIn$ | async; else notAuthorized">
+				<!-- CONTENT -->
+
+				<mat-tab-group>
+					<!--
+					<mat-tab label="GENERAL">
+						<br /><br />
+						<ng-template matTabContent>
+							<ul>
+								<li>
+									Navigating the UI
+								</li>
+								<li>
+									The help button
+								</li>
+								<li>
+									Using Filters
+								</li>
+								<li>
+									Roles
+								</li>
+								<li>
+									Request Support (Requesting a Font/Colour to be added)
+								</li>
+							</ul>
+						</ng-template>
+					</mat-tab>
+					-->
+					<mat-tab label="PRODUCING VARIATIONS">
+						<br /><br />
+						<ng-template matTabContent>
+							<div class="row" style="padding: 0;margin:0;">
+								<div class="col-12 col-md-4">
+									<mat-card class="example-card">
+										<mat-card-header>
+											<!--
+											<div mat-card-avatar class="example-header-image"></div>
+											<img mat-card-image
+											src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="" />
+											-->
+											<mat-card-title>STATIC JPGS</mat-card-title>
+											<mat-card-subtitle>Rollout</mat-card-subtitle>
+										</mat-card-header>
+										<img mat-card-image
+											src="../assets/images/bg-dashboard-01.png" alt="" />
+
+
+										<mat-card-content>
+											<p>
+												Walkthrough on how to producing Static JPG Variations.
+											</p>
+										</mat-card-content>
+										<mat-card-actions>
+											<button
+												mat-flat-button
+												color="primary"
+												(click)="watchVideo('7fae84eb4e37893b8c78f80a7b7a88aa', 'Producing Static JPG Variations')">
+													WATCH
+											</button>
+										</mat-card-actions>
+									</mat-card>
+								</div>
+								<!--
+								<div class="col-12 col-md-4">
+									<mat-card class="example-card">
+										<mat-card-header>
+											<mat-card-title>GIFs</mat-card-title>
+											<mat-card-subtitle>variations</mat-card-subtitle>
+										</mat-card-header>
+										<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">
+										<mat-card-content>
+											<p>
+												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius diam quis eros congue, cursus ultrices nisi malesuada.
+											</p>
+										</mat-card-content>
+										<mat-card-actions>
+											<button
+												mat-button
+												(click)="watchVideo('644822f93dcddab3e9441587d184ca2f', 'Producing GIFs Variations')">
+													WATCH
+											</button>
+										</mat-card-actions>
+									</mat-card>
+
+								</div>
+								<div class="col-12 col-md-4">
+									<mat-card class="example-card">
+										<mat-card-header>
+											<mat-card-title>HTML5</mat-card-title>
+											<mat-card-subtitle>variations</mat-card-subtitle>
+										</mat-card-header>
+										<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">
+										<mat-card-content>
+											<p>
+												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius diam quis eros congue, cursus ultrices nisi malesuada.
+											</p>
+										</mat-card-content>
+										<mat-card-actions>
+											<button
+												mat-button
+												(click)="watchVideo('644822f93dcddab3e9441587d184ca2f', 'Producing HTML5 Variations')">
+													WATCH
+											</button>
+										</mat-card-actions>
+									</mat-card>
+								</div>
+								<div class="col-12 col-md-4">
+									<mat-card class="example-card">
+										<mat-card-header>
+											<mat-card-title>GETTING A SAMPLE SPREADSHEET</mat-card-title>
+											<mat-card-subtitle>variations</mat-card-subtitle>
+										</mat-card-header>
+										<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">
+										<mat-card-content>
+											<p>
+												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius diam quis eros congue, cursus ultrices nisi malesuada.
+											</p>
+										</mat-card-content>
+										<mat-card-actions>
+											<button
+												mat-button
+												(click)="watchVideo('644822f93dcddab3e9441587d184ca2f', 'Getting the Sample Spreadsheet for a Template')">
+													WATCH
+											</button>
+										</mat-card-actions>
+									</mat-card>
+								</div>
+								-->
+							</div>
+						</ng-template>
+					</mat-tab>
+					<mat-tab label="CREATING TEMPLATES">
+
+						<ng-template matTabContent>
+							<br /><br />
+							<div class="alert alert-info">
+								<p style="text-align: center;margin-bottom: 0;">Content not available at the moment</p>
+							</div>
+							<!--
+							<ul>
+								<li>
+									Intro: Containers / Frames (CRUD) -> Components
+								</li>
+								<li>
+									Animations
+								</li>
+								<li>
+									Component Types
+								</li>
+								<li>
+									Principles (worst-case scenario of template)
+								</li>
+								<li>
+									Hacks (copy layouts)
+								</li>
+							</ul>
+							-->
+						</ng-template>
+					</mat-tab>
+					<mat-tab label="BEST PRACTICES">
+						<br /><br />
+						<ng-template matTabContent>
+							<br /><br />
+							<div class="alert alert-info">
+								<p style="text-align: center;margin-bottom: 0;">Content not available at the moment</p>
+							</div>
+							<!--
+							<ul>
+								<li>
+									Naming convention
+								</li>
+								<li>
+									Organising templates: Project -> Templates
+								</li>
+								<li>
+									The help button
+								</li>
+								<li>
+									Using Filters
+								</li>
+								<li>
+									Creatives / Banners should match the Template Type (dont put GIFs in an HTML5 Template)
+								</li>
+								<li>
+									Duplicating Banners (With HTML5 always produce GIF first -> which will be backup images -> and then duplicate to HTML5)
+								</li>
+
+							</ul>
+							-->
+						</ng-template>
+					</mat-tab>
+				</mat-tab-group>
+			</div>
+
+			<ng-template #notAuthorized>
+				<header id="header">
+					<div class="container">
+						<div class="row">
+							<div class="col-6 col-md-2 ">
+								<a [routerLink]="['/', path.dashboard.root]" class="logo">
+									<img src="assets/images/tbwa_logo_white.png" alt="TBWA Logo /">
+								</a>
+
+							</div>
+							<div class="col-6 col-md-2 offset-md-8 ">
+								<a [routerLink]="['/auth', path.auth.signIn]" class="login">
+									<span>LOGIN</span>
+								</a>
+							</div>
+
+						</div>
+
+					</div>
+				</header>
+				<div class="hero-copy">
+					<button mat-flat-button [routerLink]="['/', path.dashboard.root]" >
+						<h1>B<span>⌘</span>NNER</h1>
+					</button>
+				</div>
+				<footer class="c-footer">
+					&copy; TBWA \ The Disruption ® company &ndash; <a href="https://www.tbwa.co.za/policies/privacy-policy.html" target="_blank" class="u-text-white">Privacy Policy</a>.
+				</footer>
+			</ng-template>
+
+		</div>
+
+	</main>
+</section>

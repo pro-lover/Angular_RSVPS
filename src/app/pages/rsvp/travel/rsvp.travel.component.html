@@ -1,0 +1,129 @@
+
+
+	<h3>
+		Travel Details
+	</h3>
+	<p>
+		Please ensure that your dates and times are correct, as this is what we will use to arrange your transfer from the airport to the hotel and from the hotel to the airport.
+	</p>
+	<form class="form-afconf" [formGroup]="FormGroupStep">
+
+		<br /><br />
+		<h3>
+			Mauritius Arrival
+		</h3>
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-4">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Arrival Date</mat-label>
+
+					<input [disabled]="true" matInput [min]="minDateArrival" [max]="maxDateArrival" [matDatepicker]="picker" formControlName="arrivalDate" [ngClass]="{ 'is-invalid': fStep['arrivalDate'].errors }" >
+					<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker [disabled]="false" #picker></mat-datepicker>
+					<!--
+					<input matInput placeholder="" formControlName="arrivalDate" [ngClass]="{ 'is-invalid':  fStep['arrivalDate'].errors }" required />
+					-->
+					<mat-error *ngIf="fStep['arrivalDate'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['arrivalDate'].errors['required']">Arrival Date is required</div>
+					</mat-error>
+					<mat-hint>DD/MM/YYYY</mat-hint>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-4">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Arrival Time</mat-label>
+					<input matInput type="time" placeholder="" formControlName="arrivalTime" [ngClass]="{ 'is-invalid':  fStep['arrivalTime'].errors }" required />
+					<mat-error *ngIf="fStep['arrivalTime'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['arrivalTime'].errors['required']">Arrival Time is required</div>
+					</mat-error>
+					<mat-hint>24 Hour format eg: 13:40</mat-hint>
+				</mat-form-field>
+			</div>
+
+			<div class="form-group col-12 col-md-4">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Arrival Flight Number</mat-label>
+					<input matInput placeholder="" formControlName="arrivalFlightNumber" [ngClass]="{ 'is-invalid':  fStep['arrivalFlightNumber'].errors }" required />
+					<mat-error *ngIf="fStep['arrivalFlightNumber'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['arrivalFlightNumber'].errors['required']">Arrival Flight Number is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<br /><br />
+		<h3>
+			Mauritius Departure
+		</h3>
+		<div class="form-row row">
+
+			<div class="form-group col-12 col-md-4">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Departure Date</mat-label>
+					<!--
+					<input matInput placeholder="" formControlName="departureDate" [ngClass]="{ 'is-invalid':  fStep['departureDate'].errors }" required />
+					-->
+					<input [disabled]="true" matInput [min]="minDateDeparture" [max]="maxDateDeparture" [matDatepicker]="pickerDepart" formControlName="departureDate" [ngClass]="{ 'is-invalid': fStep['departureDate'].errors }" >
+					<mat-datepicker-toggle matSuffix [for]="pickerDepart"></mat-datepicker-toggle>
+					<mat-datepicker [disabled]="false" #pickerDepart></mat-datepicker>
+
+					<mat-error *ngIf="fStep['departureDate'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['departureDate'].errors['required']">Departure Date is required</div>
+					</mat-error>
+					<mat-hint>DD/MM/YYYY</mat-hint>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-12 col-md-4">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Departure Time</mat-label>
+					<input matInput type="time" placeholder="" formControlName="departureTime" [ngClass]="{ 'is-invalid':  fStep['departureTime'].errors }" required />
+					<mat-error *ngIf="fStep['departureTime'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['departureTime'].errors['required']">Departure Time is required</div>
+					</mat-error>
+					<mat-hint>24 Hour format eg: 13:40</mat-hint>
+				</mat-form-field>
+			</div>
+
+			<div class="form-group col-12 col-md-4">
+
+				<mat-form-field class="afconf-form-field" appearance="fill">
+					<mat-label>Departure Flight Number</mat-label>
+					<input matInput placeholder="" formControlName="departureFlightNumber" [ngClass]="{ 'is-invalid':  fStep['departureFlightNumber'].errors }" required />
+					<mat-error *ngIf="fStep['departureFlightNumber'].errors" class="invalid-feedback">
+						<div *ngIf="fStep['departureFlightNumber'].errors['required']">Departure Flight Number is required</div>
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<br />
+		<br />
+		<div style="display:flex;justify-content: space-between;">
+			<button
+				[disabled]="submitting"
+				class="button-black button-left-parallelogram"
+				[routerLink]="['/', 'rsvp', 'personal-details']">
+					<span class="skew-fix">
+						Back
+					</span>
+			</button>
+			<button
+				[disabled]="submitting"
+				(click)="nextStep('complete')"
+				class="button-black button-right-parallelogram">
+					<span class="skew-fix">
+						<span *ngIf="!submitting">Register</span>
+						<span *ngIf="submitting" class="spinner-border spinner-border-sm mr-1"></span>
+					</span>
+			</button>
+
+		</div>
+
+	</form>
+

@@ -1,0 +1,101 @@
+
+@import '../../../../theme/app.global.scss';
+
+h3 {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.form-afconf {
+	position: relative;
+
+	.two-pac-shakur {
+		display: flex;
+		flex-direction: row;
+	}
+
+	label {
+		margin: 1em auto;
+	}
+
+	input {
+		&:focus {
+			outline: none;
+			box-shadow: none;
+		}
+	}
+
+	.form-group {
+		margin-bottom: 1em;
+	}
+
+	.mat-form-field {
+		width: 100%;
+
+		.mat-form-field-subscript-wrapper {
+			padding: 0;
+		}
+
+		.mat-chip.mat-standard-chip {
+			padding-top: 9px;
+			background-color: #4caf50;
+		}
+
+		.mat-standard-chip .mat-chip-remove.mat-icon,
+		.mat-standard-chip .mat-chip-remove .mat-icon {
+			font-size: 15px;
+		}
+	}
+
+	.form-field-label,
+	.form-field-input,
+	.form-field-hint {
+		color: $colour_white;
+		//text-align: center;
+	}
+
+	.form-field-label,
+	.form-field-input {
+		//font-size: 30px;
+	}
+
+	button,
+	.mat-button {
+		text-transform: uppercase;
+		border-radius: 0;
+		padding: 1em;
+		text-align: center;
+		//border: 1px solid transparent;
+		//background-color: transparent;
+		border: none;
+		//@function: 1px solid black;
+
+		&:before {
+			top: 0;
+			border: none;
+		}
+
+		&:hover {
+			//border-bottom: 1px solid $colour_yellow;
+			&:before {
+				border: none;
+				//border-bottom: 1px solid $colour_yellow;
+			}
+		}
+	}
+
+	@media screen and (max-width: get-media(s)) {
+
+		.two-pac-shakur {
+			display: flex;
+			flex-direction: column;
+		}
+
+		button {
+			font-size: 1em;
+			padding: 1em 2em;
+			border-radius: 0;
+		}
+	}
+}
+

@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>
+	{{data.title}}
+</h1>
+<div mat-dialog-content class="mat-typography ">
+	<div class="row">
+		<div class="col-12 col-md-12">
+			<!--
+				[src]="videoId"
+				src="644822f93dcddab3e9441587d184ca2f"
+			-->
+			<cloudflare-stream
+				[controls]="true"
+				[src]="videoId"
+			></cloudflare-stream>
+		</div>
+	</div>
+</div>
+<br />
+<hr />
+<div mat-dialog-actions align="end" style="margin:1em auto;margin-bottom: 0;">
+	<!--
+	<button mat-button mat-flat-button color="primary">
+		Play
+	</button>
+	-->
+	<button mat-button mat-stroked-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>
+		Close
+	</button>
+</div>

@@ -1,0 +1,33 @@
+﻿
+
+<app-layout *ngIf="isLoggedIn$ | async; else notAuthorized">
+	<div id="app-layout">
+		<div class="container-fluid">
+
+			<!-- global alert -->
+			<app-alert></app-alert>
+
+			<div style="padding: 0;margin: 0;"
+				[@routeAnimations]="getRouteAnimationData()">
+					<router-outlet></router-outlet>
+			</div>
+		</div>
+	</div>
+</app-layout>
+
+<ng-template #notAuthorized>
+	<app-layout>
+		<div id="app-layout-logged-out">
+			<div class="container-fluid">
+
+				<!-- global alert -->
+				<app-alert></app-alert>
+
+				<div style="padding: 0;margin: 0;"
+					[@routeAnimations]="getRouteAnimationData()">
+						<router-outlet></router-outlet>
+				</div>
+			</div>
+		</div>
+	</app-layout>
+</ng-template>

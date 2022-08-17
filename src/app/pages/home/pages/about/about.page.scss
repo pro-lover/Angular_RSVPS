@@ -1,0 +1,58 @@
+
+@import '../../../../../theme/app.global.scss';
+
+$h1:  rgba(45,45,45,1);
+$blue: #98b5cc;
+$yellow: #fdcc09;
+$outline: rgba(#fff, .4);
+$shadow: rgba($yellow, .5);
+
+.container-fluid {
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	//background-image: url('/assets/images/bg-dashboard-01.png');
+}
+
+.hero-section {
+	top: 0;
+	left:0;
+	width: 100%;
+	min-height: 70vh;
+	display: flex;
+	flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+	z-index: 2;
+	padding: 0;
+	padding-bottom: 20vh;
+
+	.mat-tab-group {
+		width: 100%;
+	}
+
+
+	.example-card {
+		position: relative;
+		padding: 1em;
+		margin: 1em auto;
+		font-family: $font_family;
+		border:1px solid transparent;
+		box-shadow: $card_box_shadow_subtle;
+		border-radius: $border_radius_card;
+
+		.mat-card-image {
+			background-color: #afafaf;
+		}
+	}
+
+	video {
+		margin: 0 auto;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		display: block;
+		object-fit: cover;
+		object-position: center;
+	}
+}

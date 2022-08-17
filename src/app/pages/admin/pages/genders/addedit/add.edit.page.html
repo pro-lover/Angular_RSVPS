@@ -1,0 +1,49 @@
+
+<mat-toolbar class="bapp-admin-toolbar">
+	<span class="toolbar-title">
+		<span *ngIf="isAddMode">Create Gender</span>
+		<span *ngIf="!isAddMode">Edit Gender</span>
+	</span>
+	<span class="example-spacer"></span>
+</mat-toolbar>
+
+<form class="form-model-edit" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row row">
+
+        <div class="form-group col-12 col-md-12">
+
+			<mat-form-field class="" appearance="outline">
+				<mat-label>Name</mat-label>
+				<input matInput placeholder="" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" required />
+				<mat-error *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+					<div *ngIf="f['name'].errors['required']">Name is required</div>
+				</mat-error>
+			</mat-form-field>
+        </div>
+        <div class="form-group col-12 col-md-12">
+
+			<mat-form-field class="" appearance="outline">
+				<mat-label>Short Name</mat-label>
+				<input matInput placeholder="" formControlName="shortName" [ngClass]="{ 'is-invalid': submitted && f['shortName'].errors }" required />
+				<mat-error *ngIf="submitted && f['shortName'].errors" class="invalid-feedback">
+					<div *ngIf="f['shortName'].errors['required']">Short Name is required</div>
+				</mat-error>
+			</mat-form-field>
+        </div>
+
+    </div>
+	<hr />
+	<br />
+    <div class="form-group">
+		<div class="btn-group">
+			<button [disabled]="loading" class="btn btn-success">
+				<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+				<span *ngIf="isAddMode">Save</span>
+				<span *ngIf="!isAddMode">Update</span>
+			</button>
+			<a [ngClass]="{ 'disabled': loading }" class="btn btn-secondary" (click)="back()">
+				Cancel
+			</a>
+		</div>
+	</div>
+</form>
